@@ -13,18 +13,31 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor // Lombok: maakt automatisch een constructor met alle final velden
+@RequiredArgsConstructor
 public class CharacterService {
 
     private final CharacterRepository characterRepository;
     private final CharacterMapper characterMapper;
 
     /**
-     * Haalt alle characters op en converteert ze naar DTOs.
+     * Haalt alle characters op, optioneel gefilterd op huis.
+     * @param house De naam van het huis om op te filteren (optioneel).
+     * @return Een lijst van character DTOs.
      */
-    public List<CharacterResponseDto> getAllCharacters() {
-        return characterRepository.findAll()
-                .stream()
+    public List<CharacterResponseDto> getAllCharacters(String house) {
+        List<Character> characters;
+
+        // Controleer of er een filter op 'house' is meegegeven.
+        if (house != null && !house.isBlank()) {
+            // Ja, filter op huis (case-insensitive).
+            characters = characterRepository.findByHouseIgnoreCase(house);
+        } else {
+            // Nee, haal alle characters op.
+            characters = characterRepository.findAll();
+        }
+
+        // Converteer de gevonden lijst van entities naar DTOs.
+        return characters.stream()
                 .map(characterMapper::toDto)
                 .collect(Collectors.toList());
     }
@@ -34,13 +47,8 @@ public class CharacterService {
      */
     @Transactional
     public CharacterResponseDto createCharacter(CreateCharacterRequestDto createDto) {
-        // 1. Converteer de DTO naar een Entity
         Character characterToSave = characterMapper.toEntity(createDto);
-
-        // 2. Sla de entity op in de database
         Character savedCharacter = characterRepository.save(characterToSave);
-
-        // 3. Converteer de opgeslagen entity terug naar een response DTO en retourneer deze
         return characterMapper.toDto(savedCharacter);
     }
 }

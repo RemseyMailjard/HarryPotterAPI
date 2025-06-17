@@ -20,21 +20,22 @@ public class CharacterController {
     private final CharacterService characterService;
 
     @GetMapping
-    public ResponseEntity<List<CharacterResponseDto>> getAll() {
-        List<CharacterResponseDto> characters = characterService.getAllCharacters();
+    public ResponseEntity<List<CharacterResponseDto>> getAll(
+            @RequestParam(required = false) String house) {
+
+        List<CharacterResponseDto> characters = characterService.getAllCharacters(house);
         return ResponseEntity.ok(characters);
     }
 
     @PostMapping
     public ResponseEntity<CharacterResponseDto> create(@Valid @RequestBody CreateCharacterRequestDto createDto) {
         CharacterResponseDto newCharacter = characterService.createCharacter(createDto);
-        // Retourneer een 201 Created statuscode, wat de standaard is voor het aanmaken van een resource.
         return new ResponseEntity<>(newCharacter, HttpStatus.CREATED);
     }
 
 //    @DeleteMapping("/{id}")
 //    public ResponseEntity<Void> delete(@PathVariable UUID id) {
 //        // TODO: Implementeer delete logica in CharacterService
-//        return ResponseEntity.noContent().build(); // Status 204 No Content
+//        return ResponseEntity.noContent().build();
 //    }
 }
