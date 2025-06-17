@@ -2,6 +2,7 @@ package com.example.hpapi.demo.service;
 
 import com.example.hpapi.demo.dto.CharacterResponseDto;
 import com.example.hpapi.demo.dto.CreateCharacterRequestDto;
+import com.example.hpapi.demo.mapper.CharacterMapper;
 import com.example.hpapi.demo.model.Character;
 import com.example.hpapi.demo.repository.CharacterRepository;
 import jakarta.transaction.Transactional;

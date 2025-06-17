@@ -1,4 +1,4 @@
-package com.example.hpapi.demo.service;
+package com.example.hpapi.demo.mapper;
 
 import com.example.hpapi.demo.dto.CharacterResponseDto;
 import com.example.hpapi.demo.dto.CreateCharacterRequestDto;
