@@ -187,23 +187,24 @@ Returns all characters stored in the database.
 
 ---
 
-## 🗂️ Project Structure
-
-```
 src
 └── main
     ├── java/com/example/hpapi/demo
     │   ├── DemoApplication.java          # App entry point
     │   ├── controller/
     │   │   └── CharacterController.java  # API endpoints
+    │   ├── dto/
+    │   │   ├── CharacterResponseDto.java # DTO for API responses
+    │   │   └── CreateCharacterRequestDto.java # DTO for creating characters
     │   ├── model/
-    │   │   └── Character.java            # Entity model
-    │   └── repository/
-    │       └── CharacterRepository.java  # JPA Repository
+    │   │   └── Character.java            # JPA Entity model
+    │   ├── repository/
+    │   │   └── CharacterRepository.java  # JPA Repository
+    │   └── service/
+    │       ├── CharacterMapper.java      # Maps between Entity and DTO
+    │       └── CharacterService.java     # Business logic
     └── resources/
         └── application.properties        # Configuration
-```
-
 ---
 
 ## ⚠️ Security Warning
