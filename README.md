@@ -164,12 +164,11 @@ Returns all characters stored in the database.
 
 ```json
 {
-  "id": "a8e4b778-459e-4a33-85a0-9833a2e7c1a1",
   "name": "Draco Malfoy",
   "house": "Slytherin",
   "species": "human",
   "gender": "male",
-  "dateOfBirth": "05-06-1980",
+  "dateOfBirth": "1980-06-05",
   "wizard": true,
   "ancestry": "pure-blood",
   "eyeColour": "grey",
@@ -187,23 +186,24 @@ Returns all characters stored in the database.
 
 ---
 
-## 🗂️ Project Structure
-
-```
 src
 └── main
     ├── java/com/example/hpapi/demo
     │   ├── DemoApplication.java          # App entry point
     │   ├── controller/
     │   │   └── CharacterController.java  # API endpoints
+    │   ├── dto/
+    │   │   ├── CharacterResponseDto.java # DTO for API responses
+    │   │   └── CreateCharacterRequestDto.java # DTO for creating characters
     │   ├── model/
-    │   │   └── Character.java            # Entity model
-    │   └── repository/
-    │       └── CharacterRepository.java  # JPA Repository
+    │   │   └── Character.java            # JPA Entity model
+    │   ├── repository/
+    │   │   └── CharacterRepository.java  # JPA Repository
+    │   └── service/
+    │       ├── CharacterMapper.java      # Maps between Entity and DTO
+    │       └── CharacterService.java     # Business logic
     └── resources/
         └── application.properties        # Configuration
-```
-
 ---
 
 ## ⚠️ Security Warning
