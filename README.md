@@ -164,12 +164,11 @@ Returns all characters stored in the database.
 
 ```json
 {
-  "id": "a8e4b778-459e-4a33-85a0-9833a2e7c1a1",
   "name": "Draco Malfoy",
   "house": "Slytherin",
   "species": "human",
   "gender": "male",
-  "dateOfBirth": "05-06-1980",
+  "dateOfBirth": "1980-06-05",
   "wizard": true,
   "ancestry": "pure-blood",
   "eyeColour": "grey",
